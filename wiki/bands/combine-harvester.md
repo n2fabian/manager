@@ -1,24 +1,31 @@
+
 # Combine Harvester
 
 ## Band Information
-- **Genre**: Metal
+- **Genre**: Metalcore
 - **Status**: Active
 - **Formation**: TBD
 
 ## Members
-- **Fabian Wohlgemuth (Fabi)**: Drums & Vocals
-  - Primary contact
-  - [Add contact details as needed]
+Fabsi - Drums
+Fabi - Vocals
+Niko - Guitar
+Freya - Guitar
+Rick - Bass
+
 
 ## Band Bio
-[To be filled with band history, sound description, influences, achievements]
+Short: Combine Harvester is a heavy metalcore band from Germany.
+
+Long: Combine Harvester is a modern metalcore band from North Rhine-Westphalia, Germany—serving up chuggy breakdowns, catchy riffs, melodic solos, and just the right amount of existential crisis.
+
 
 ## Music
 ### Releases
 - [List albums, EPs, singles]
 
 ### Streaming Links
-- Spotify: [TBD]
+- Spotify: https://open.spotify.com/artist/3GeTwZPCOlNlRw34hCJTx3?si=jX7SzMnoTIuXfq1NADhnmg
 - Apple Music: [TBD]
 - Bandcamp: [TBD]
 - YouTube: [TBD]
@@ -38,17 +45,18 @@
 - Stage size requirements: [TBD]
 - Special equipment: [TBD]
 
+
 ## Promotional Materials
 ### Press Kit
 - Band photos: [Location/links]
 - Logo files: [Location/links]
 - Press release: [Location/links]
-- Bio (short): [TBD]
-- Bio (long): [TBD]
+- Bio (short): Combine Harvester is a heavy metalcore band from Germany.
+- Bio (long): Combine Harvester is a modern metalcore band from North Rhine-Westphalia, Germany—serving up chuggy breakdowns, catchy riffs, melodic solos, and just the right amount of existential crisis.
 
 ### Social Media
+- Instagram: combineharvester_band
 - Facebook: [TBD]
-- Instagram: [TBD]
 - Twitter/X: [TBD]
 - TikTok: [TBD]
 
