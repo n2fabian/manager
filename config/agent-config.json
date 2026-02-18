@@ -1,0 +1,49 @@
+{
+  "agent_name": "BandManagerAgent",
+  "version": "1.0.0",
+  "manager": {
+    "name": "Fabian Wohlgemuth",
+    "nickname": "Fabi",
+    "role": "Drums & Vocals",
+    "email": ""
+  },
+  "bands": [
+    {
+      "name": "Near's 2 Far",
+      "genre": "Metal",
+      "status": "active",
+      "wiki_path": "wiki/bands/nears-2-far.md"
+    },
+    {
+      "name": "Combine Harvester",
+      "genre": "Metal",
+      "status": "active",
+      "wiki_path": "wiki/bands/combine-harvester.md"
+    }
+  ],
+  "features": {
+    "venue_booking": true,
+    "merch_management": true,
+    "cashflow_monitoring": true,
+    "music_promotion": true,
+    "crm": true,
+    "web_visibility": true
+  },
+  "data_storage": {
+    "wiki_path": "wiki/",
+    "docs_path": "docs/",
+    "templates_path": "docs/templates/",
+    "output_path": "docs/output/",
+    "tasks_path": "tasks/"
+  },
+  "future_integrations": {
+    "sql_database": {
+      "enabled": false,
+      "description": "Structured data storage for contacts, financials, inventory"
+    },
+    "rag_system": {
+      "enabled": false,
+      "description": "Unstructured data querying for documents, notes, correspondence"
+    }
+  }
+}
