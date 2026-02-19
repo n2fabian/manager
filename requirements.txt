@@ -1,0 +1,24 @@
+# Web Framework
+Flask>=3.0.0
+WTForms>=3.0.0
+MarkupSafe>=2.1.0
+
+# API & Web Requests
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Google API Integration (for future MCP implementations)
+google-api-python-client>=2.0.0
+google-auth-httplib2>=0.2.0
+google-auth-oauthlib>=1.2.0
+
+# Utilities
+python-dotenv>=1.0.0
+markdown>=3.5.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Optional: Advanced Scraping (commented out by default)
+# selenium>=4.15.0

@@ -66,3 +66,22 @@ docs/output/*.docx
 *.zip
 *.tar.gz
 *.rar
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Devcontainer
+.devcontainer/.build/
+
+# API credentials
+credentials.json
+token.json
+gmail-credentials.json
+gmail-token.json
+
+# Website build output (for future)
+website/_site/
+website/.jekyll-cache/
