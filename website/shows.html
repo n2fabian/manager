@@ -1,0 +1,48 @@
+---
+layout: default
+title: Shows
+---
+
+<section class="shows">
+    <div class="container">
+        <h2>Upcoming Shows</h2>
+        
+        <div class="shows-list">
+            {% assign upcoming_shows = site.shows | where_exp: "show", "show.date >= site.time" | sort: "date" %}
+            {% if upcoming_shows.size > 0 %}
+                {% for show in upcoming_shows %}
+                <div class="show-item">
+                    <div class="show-date">{{ show.date | date: "%b %d, %Y" }}</div>
+                    <div class="show-details">
+                        <h3>{{ show.venue }}</h3>
+                        <p>{{ show.city }}{% if show.country %}, {{ show.country }}{% endif %}</p>
+                        {% if show.ticket_link %}
+                        <a href="{{ show.ticket_link }}" class="ticket-link" target="_blank">Get Tickets</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No upcoming shows scheduled. Check back soon!</p>
+            {% endif %}
+        </div>
+        
+        <h3>Past Shows</h3>
+        <div class="shows-list">
+            {% assign past_shows = site.shows | where_exp: "show", "show.date < site.time" | sort: "date" | reverse %}
+            {% if past_shows.size > 0 %}
+                {% for show in past_shows limit:10 %}
+                <div class="show-item past">
+                    <div class="show-date">{{ show.date | date: "%b %d, %Y" }}</div>
+                    <div class="show-details">
+                        <h3>{{ show.venue }}</h3>
+                        <p>{{ show.city }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Show history will appear here.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>

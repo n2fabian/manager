@@ -1,0 +1,16 @@
+<footer class="site-footer">
+    <div class="container">
+        <div class="social-links">
+            {% if site.band.social.spotify %}
+            <a href="{{ site.band.social.spotify }}" target="_blank" aria-label="Spotify">Spotify</a>
+            {% endif %}
+            {% if site.band.social.instagram %}
+            <a href="https://instagram.com/{{ site.band.social.instagram }}" target="_blank" aria-label="Instagram">Instagram</a>
+            {% endif %}
+            {% if site.band.social.facebook %}
+            <a href="{{ site.band.social.facebook }}" target="_blank" aria-label="Facebook">Facebook</a>
+            {% endif %}
+        </div>
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.band.name }}. All rights reserved.</p>
+    </div>
+</footer>

@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "website/assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  - name: "shows"
+    label: "Shows"
+    folder: "website/_shows"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{venue}}"
+    fields:
+      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Venue", name: "venue", widget: "string"}
+      - {label: "City", name: "city", widget: "string"}
+      - {label: "Country", name: "country", widget: "string", default: "Germany"}
+      - {label: "Ticket Link", name: "ticket_link", widget: "string", required: false}
+      - {label: "Notes", name: "body", widget: "markdown", required: false}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "website/index.html"
+        fields:
+          - {label: "Layout", name: "layout", widget: "hidden", default: "default"}
+          - {label: "Title", name: "title", widget: "hidden", default: "Home"}
+          - {label: "Hero Text", name: "hero_text", widget: "text"}
+          - {label: "About Text", name: "about_text", widget: "markdown"}

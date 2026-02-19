@@ -1,0 +1,32 @@
+---
+layout: default
+title: Home
+---
+
+<section class="hero">
+    <div class="container">
+        <h2>{{ site.band.bio_long }}</h2>
+        <a href="{{ '/music.html' | relative_url }}" class="cta-button">Listen Now</a>
+    </div>
+</section>
+
+<section class="about">
+    <div class="container">
+        <h2>About the Band</h2>
+        <p>{{ site.band.bio_long }}</p>
+        
+        <h3>Members</h3>
+        <ul class="members-list">
+        {% for member in site.band.members %}
+            <li><strong>{{ member.name }}</strong> - {{ member.role }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<section class="latest-news">
+    <div class="container">
+        <h2>Latest News</h2>
+        <p>Check back soon for updates on new releases, show announcements, and more!</p>
+    </div>
+</section>

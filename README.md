@@ -21,19 +21,35 @@ This repository is your AI-powered command center for managing all aspects of yo
 
 ## 🚀 Quick Start
 
+### Development Environment Setup
+
+**Using Dev Container (Recommended)**:
+1. Install [VS Code](https://code.visualstudio.com/) and [Docker](https://www.docker.com/)
+2. Install the "Dev Containers" extension in VS Code
+3. Open this repository in VS Code
+4. Click "Reopen in Container" when prompted (or use Command Palette: "Dev Containers: Reopen in Container")
+5. Container will build automatically with Python, Flask, and all dependencies
+
+**Manual Setup**:
+1. Install Python 3.11+
+2. Install dependencies: `pip install -r requirements.txt`
+3. Copy `.env.example` to `.env` and configure as needed
+
 ### For First-Time Setup
 1. Clone this repo to your local machine
-2. Explore the structure below
-3. Fill in band-specific information in `/wiki/bands/`
-4. Add your contacts to `/wiki/contacts/`
-5. Use templates in `/docs/templates/` for outreach
-6. Start booking shows and crushing it! 🤘
+2. Set up development environment (see above)
+3. Explore the structure below
+4. Fill in band-specific information in `/wiki/bands/`
+5. Add your contacts to `/wiki/contacts/`
+6. Use templates in `/docs/templates/` for outreach
+7. Start booking shows and crushing it! 🤘
 
 ### Key Files to Start With
 - **📧 Venue Email Template**: `/docs/templates/venue-email-template.md`
 - **🎤 Tech Rider**: `/docs/templates/tech-rider.md`
 - **📋 Band Info**: `/wiki/bands/nears-2-far.md` & `/wiki/bands/combine-harvester.md`
 - **📞 Contacts**: `/wiki/contacts/venues.md`
+- **🗺️ Roadmap**: `/docs/FUTURE_ROADMAP.md` - See planned features and tools
 
 ---
 
@@ -41,39 +57,50 @@ This repository is your AI-powered command center for managing all aspects of yo
 
 ```
 manager/
+├── .devcontainer/
+│   └── devcontainer.json           # Dev container configuration
+│
 ├── .github/
 │   └── agents/
-│       └── band-manager-agent.md      # Main agent instructions
+│       ├── band-manager-agent.md   # Main agent instructions
+│       └── rpi-agent.agent.md      # RPI orchestrator agent
 │
 ├── config/
-│   └── agent-config.json              # Agent configuration
+│   └── agent-config.json           # Agent configuration
 │
-├── wiki/                              # Knowledge base
-│   ├── bands/                         # Band information
-│   │   ├── nears-2-far.md
-│   │   └── combine-harvester.md
-│   ├── contacts/                      # CRM
-│   │   ├── venues.md
-│   │   ├── organizers.md
-│   │   └── fans.md
-│   └── events/                        # Event documentation
+├── mcps/                           # Model Context Protocol tools
+│   ├── base_mcp.py                 # Base class for MCPs
+│   ├── google_drive_mcp.py         # Google Drive integration (skeleton)
+│   └── email_mcp.py                # Email automation (skeleton)
 │
-├── docs/                              # Documentation & output
-│   ├── templates/                     # Reusable templates
-│   │   ├── venue-email-template.md
-│   │   ├── tech-rider.md
-│   │   ├── financial-tracking.md
-│   │   └── merch-inventory.md
-│   ├── output/                        # Generated documents
-│   └── workflows/                     # Process documentation
-│       └── show-booking-workflow.md
+├── tools/                          # Utilities and tools
+│   ├── simple_form_ui.py           # Flask form for data collection
+│   └── scrapers/                   # Web scraping tools
+│       ├── base_scraper.py         # Base scraper with ethical guidelines
+│       ├── instagram_scraper.py    # Band discovery (skeleton)
+│       └── backstage_scraper.py    # Venue/event discovery (skeleton)
 │
-├── tasks/                             # Task tracking
-│   └── current-tasks.md
+├── website/                        # Combine Harvester band website
+│   ├── _config.yml                 # Jekyll configuration
+│   ├── _layouts/                   # Page layouts
+│   ├── assets/                     # CSS, JS, images
+│   ├── admin/                      # Netlify CMS
+│   └── *.html                      # Site pages
 │
-├── mcps/                              # Model Context Protocols (future)
+├── wiki/                           # Knowledge base
+│   ├── bands/                      # Band information
+│   ├── contacts/                   # CRM
+│   └── events/                     # Event documentation
 │
-└── README.md                          # You are here
+├── docs/                           # Documentation
+│   ├── FUTURE_ROADMAP.md           # Planned features and integrations
+│   ├── templates/                  # Reusable templates
+│   └── workflows/                  # Process documentation
+│
+├── tasks/                          # Task tracking
+├── requirements.txt                # Python dependencies
+├── .env.example                    # Environment variable template
+└── README.md                       # You are here
 ```
 
 ---
@@ -135,6 +162,57 @@ Everything else a manager or label would do:
 
 ---
 
+## 🤖 Agentic Workflow Tools
+
+This repository now includes frameworks for AI-powered automation and external integrations:
+
+### MCP (Model Context Protocol) Tools
+
+**Location**: `/mcps/`
+
+Integrate with external services to automate band management tasks:
+
+- **Google Drive MCP**: Upload/download band documents, share files with venues, organize press kits
+- **Email MCP**: Send automated venue outreach, schedule follow-ups, track responses
+- **Future**: Dropbox, cloud storage, calendar integration
+
+**Status**: Framework implemented, full functionality requires API credentials. See `/mcps/README.md` for setup instructions.
+
+### Web Scraping Tools
+
+**Location**: `/tools/scrapers/`
+
+Discover bands, venues, and booking opportunities:
+
+- **Instagram Scraper**: Find bands by hashtag, track follower growth, analyze engagement
+- **Backstage Pro Scraper**: Discover venues and events by location/genre
+- **Base Scraper**: Ethical scraping framework with rate limiting and robots.txt respect
+
+**Status**: Framework implemented with ethical guidelines. Full implementation requires API access and legal review. See `/tools/scrapers/README.md` for details.
+
+### Band Website
+
+**Location**: `/website/`
+
+Professional band website for Combine Harvester:
+
+- **Technology**: Jekyll static site + Netlify CMS
+- **Hosting**: GitHub Pages (free, custom domain support)
+- **Features**: Show calendar, Spotify embed, photo gallery, non-technical content management
+- **Status**: Deployment-ready mockup. See `/website/DEPLOYMENT.md` for setup.
+
+### Development Environment
+
+**Devcontainer**: Pre-configured Python 3.11 environment with all dependencies
+- GitHub Copilot integration
+- Flask, BeautifulSoup, Google API clients pre-installed
+- VS Code extensions for Python and Markdown
+- One-click setup with Docker
+
+**Start here**: Open repository in VS Code and select "Reopen in Container"
+
+---
+
 ## 🔥 Workflows
 
 ### Booking a Show
@@ -177,10 +255,22 @@ Your Band Manager Agent is:
 Main agent documentation: `.github/agents/band-manager-agent.md`
 
 ### Future Enhancements
-- **SQL Database**: Structured data storage for contacts, financials, inventory
-- **RAG System**: Queryable unstructured data (documents, notes, emails)
-- **Automation**: Scheduled reminders, follow-ups, reports
-- **Analytics**: Deep insights into show performance, revenue, growth
+
+See comprehensive roadmap: `/docs/FUTURE_ROADMAP.md`
+
+**Planned (Phase 5 - Agentic Tools)**:
+- Form tools library for various workflows
+- Google Drive and email automation
+- Instagram and venue discovery scrapers
+- Financial tracking web UI
+- Social media monitoring
+- Calendar and scheduling integration
+
+**Long-term (Phases 2-4)**:
+- SQL Database for structured data
+- RAG System for intelligent document search
+- Multi-agent orchestration
+- Advanced analytics and insights
 
 ---
 
@@ -278,6 +368,6 @@ You've got the tools. You've got the talent. Now go book some shows, sell some m
 
 ---
 
-*Last Updated: 2026-02-18*  
-*Version: 1.0.0*  
+*Last Updated: 2026-02-19*  
+*Version: 2.0.0 - Agentic Workflows*  
 *Built with ❤️ and 🤘*

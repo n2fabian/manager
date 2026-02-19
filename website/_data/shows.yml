@@ -1,0 +1,12 @@
+# Sample show data (can also be managed via Netlify CMS)
+- date: 2026-03-15
+  venue: "The Metal Tavern"
+  city: "Düsseldorf"
+  country: "Germany"
+  ticket_link: ""
+  
+- date: 2026-04-20
+  venue: "Rock Palace"
+  city: "Cologne"
+  country: "Germany"
+  ticket_link: ""
