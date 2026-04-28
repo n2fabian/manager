@@ -18,10 +18,10 @@ def normalize_price(raw: str) -> float | None:
         return None
 
     number = match.group(1).replace(" ", "")
-    if "," in number and "." in number:
-        number = number.replace(".", "").replace(",", ".")
-    elif "," in number:
-        number = number.replace(".", "").replace(",", ".")
+    if "," in number:
+        if "." in number:
+            number = number.replace(".", "")
+        number = number.replace(",", ".")
     elif "." in number:
         parts = number.split(".")
         if len(parts) > 2 or (len(parts) == 2 and len(parts[1]) == 3):

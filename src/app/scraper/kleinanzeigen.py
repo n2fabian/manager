@@ -43,7 +43,7 @@ class KleinanzeigenScraper(MarketplaceScraper):
             link_element = card.select_one("a[href]")
             if not link_element:
                 continue
-            href = link_element.get("href", "").strip()
+            href = (link_element.get("href") or "").strip()
             if not href or "/s-anzeige/" not in href:
                 continue
 

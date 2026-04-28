@@ -21,7 +21,7 @@ def configure_logging() -> None:
     )
 
 
-def build_monitor(config: AppConfig):
+def build_monitor(config: AppConfig) -> tuple[DealMonitor, SQLiteStorage]:
     session = build_http_session(config.user_agent)
     scrapers = []
     if "ebay" in config.marketplaces:
