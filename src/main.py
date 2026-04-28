@@ -5,6 +5,7 @@ import logging
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
+from app.config.settings import AppConfig
 from app.config import load_config
 from app.monitor import DealMonitor
 from app.notifier import DiscordNotifier
@@ -20,7 +21,7 @@ def configure_logging() -> None:
     )
 
 
-def build_monitor(config):
+def build_monitor(config: AppConfig):
     session = build_http_session(config.user_agent)
     scrapers = []
     if "ebay" in config.marketplaces:
