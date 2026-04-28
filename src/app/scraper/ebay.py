@@ -5,6 +5,8 @@ import logging
 from urllib.parse import quote_plus
 from xml.etree import ElementTree
 
+import requests
+
 from .base import Listing, MarketplaceScraper
 from .http_client import can_fetch_url
 from .price import normalize_price
@@ -26,10 +28,13 @@ class EbayScraper(MarketplaceScraper):
             logger.warning("Skipping eBay query because robots.txt disallows %s", url)
             return []
 
-        response = self.session.get(url, timeout=20)
-        response.raise_for_status()
-
-        root = ElementTree.fromstring(response.content)
+        try:
+            response = self.session.get(url, timeout=20)
+            response.raise_for_status()
+            root = ElementTree.fromstring(response.content)
+        except (requests.RequestException, ElementTree.ParseError) as error:
+            logger.warning("eBay scrape failed for '%s': %s", term, error)
+            return []
         listings: list[Listing] = []
 
         for item in root.findall("./channel/item"):

@@ -31,7 +31,15 @@ def build_monitor(config):
     notifier = DiscordNotifier(config.discord_webhook_url, session=session) if config.discord_webhook_url else None
     storage = SQLiteStorage(config.database_path)
     storage.initialize()
-    storage.sync_products(config.price_thresholds)
+    products: dict[str, float] = {}
+    for term in config.search_terms:
+        if term in config.price_thresholds:
+            products[term] = config.price_thresholds[term]
+        else:
+            logging.warning("Skipping search term without threshold: %s", term)
+    for term, threshold in config.price_thresholds.items():
+        products.setdefault(term, threshold)
+    storage.sync_products(products)
 
     return DealMonitor(scrapers=scrapers, storage=storage, notifier=notifier), storage
 

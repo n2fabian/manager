@@ -4,6 +4,7 @@ import hashlib
 import logging
 from urllib.parse import quote_plus, urljoin
 
+import requests
 from bs4 import BeautifulSoup
 
 from .base import Listing, MarketplaceScraper
@@ -27,8 +28,12 @@ class KleinanzeigenScraper(MarketplaceScraper):
             logger.warning("Skipping Kleinanzeigen query because robots.txt disallows %s", url)
             return []
 
-        response = self.session.get(url, timeout=20)
-        response.raise_for_status()
+        try:
+            response = self.session.get(url, timeout=20)
+            response.raise_for_status()
+        except requests.RequestException as error:
+            logger.warning("Kleinanzeigen scrape failed for '%s': %s", term, error)
+            return []
         soup = BeautifulSoup(response.text, "html.parser")
 
         listings: list[Listing] = []

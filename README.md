@@ -281,3 +281,79 @@ You've got the tools. You've got the talent. Now go book some shows, sell some m
 *Last Updated: 2026-02-18*  
 *Version: 1.0.0*  
 *Built with ❤️ and 🤘*
+
+---
+
+## 🛒 Deal Sniper Tool (NAS & Gear Deals)
+
+This repository now includes a production-ready Python deal sniper that monitors used marketplaces for buy-now opportunities (starting with NAS targets like Synology DS220+ / DS218+ and extendable to other band gear).
+
+### Features
+- Periodic monitoring with APScheduler
+- Marketplace adapters (currently: eBay, Kleinanzeigen)
+- Price normalization (€, decimals, common marketplace text)
+- Product-specific threshold logic
+- Duplicate alert protection via SQLite (`seen_listings`)
+- Discord webhook notifications
+- CLI for add/remove/list product thresholds
+- Retry + user-agent headers + robots.txt awareness
+
+### Project Structure
+
+```text
+src/
+├── main.py
+└── app/
+    ├── config/
+    ├── scraper/
+    ├── notifier/
+    └── storage/
+```
+
+### Setup
+
+1. Install dependencies:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+2. Configure environment:
+   ```bash
+   cp .env.example .env
+   ```
+   Then edit `.env` and set at least:
+   - `SEARCH_TERMS`
+   - `PRICE_THRESHOLDS`
+   - `CHECK_INTERVAL`
+   - `DISCORD_WEBHOOK_URL`
+
+### Run
+
+- Continuous monitoring:
+  ```bash
+  python src/main.py run
+  ```
+
+- Single check run:
+  ```bash
+  python src/main.py check-once
+  ```
+
+### CLI Product Management
+
+```bash
+python src/main.py add-product "Synology DS220+" 220
+python src/main.py remove-product "Synology DS218+"
+python src/main.py list-products
+```
+
+### Notification Example
+
+```text
+🔥 Deal found!
+Product: Synology DS220+
+Price: 180€
+Link: https://...
+```
