@@ -17,7 +17,15 @@ def normalize_price(raw: str) -> float | None:
     if not match:
         return None
 
-    number = match.group(1).replace(" ", "").replace(".", "").replace(",", ".")
+    number = match.group(1).replace(" ", "")
+    if "," in number and "." in number:
+        number = number.replace(".", "").replace(",", ".")
+    elif "," in number:
+        number = number.replace(".", "").replace(",", ".")
+    elif "." in number:
+        parts = number.split(".")
+        if len(parts) > 2 or (len(parts) == 2 and len(parts[1]) == 3):
+            number = "".join(parts)
     try:
         return float(number)
     except ValueError:

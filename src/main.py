@@ -33,13 +33,13 @@ def build_monitor(config: AppConfig):
     storage = SQLiteStorage(config.database_path)
     storage.initialize()
     products: dict[str, float] = {}
-    for term in config.search_terms:
-        if term in config.price_thresholds:
-            products[term] = config.price_thresholds[term]
-        else:
+    candidate_terms = list(dict.fromkeys(config.search_terms + list(config.price_thresholds.keys())))
+    for term in candidate_terms:
+        threshold = config.price_thresholds.get(term)
+        if threshold is None:
             logging.warning("Skipping search term without threshold: %s", term)
-    for term, threshold in config.price_thresholds.items():
-        products.setdefault(term, threshold)
+            continue
+        products[term] = threshold
     storage.sync_products(products)
 
     return DealMonitor(scrapers=scrapers, storage=storage, notifier=notifier), storage
